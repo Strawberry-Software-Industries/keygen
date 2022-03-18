@@ -6,8 +6,8 @@ random.seed()
 MAX_LEN = 5
 
 DIGITS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-LOWERCASE = ['a', 'b', 'c', 'd', 'e', 'f']
-UPPERCASE = ['A', 'B', 'C', 'D', 'E', 'F']
+LOWERCASE = ['a', 'b', 'c', 'd', 'e', 'f', "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x"]
+UPPERCASE = ['A', 'B', 'C', 'D', 'E', 'F', "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X"]
 
 COMBINED = DIGITS+LOWERCASE+UPPERCASE
 
@@ -24,9 +24,14 @@ while True:
     rand_lower3 = random.choice(LOWERCASE)
     rand_upper3 = random.choice(UPPERCASE)
 
+    rand_digit4 = random.choice(DIGITS)
+    rand_lower4 = random.choice(LOWERCASE)
+    rand_upper4 = random.choice(UPPERCASE)
+
     temp_key1 = rand_digit1 + rand_lower1 + rand_upper1
     temp_key2 = rand_digit2 + rand_lower2 + rand_upper2
     temp_key3 = rand_digit3 + rand_lower3 + rand_upper3
+    temp_key4 = rand_digit4 + rand_lower4 + rand_upper4
 
     for x1 in range(MAX_LEN - 4):
         temp_key1 = temp_key1 + random.choice(COMBINED)
@@ -42,10 +47,16 @@ while True:
         temp_key3 = temp_key3 + random.choice(COMBINED)
         temp_key_list3 = array.array('u', temp_key3)
         random.shuffle(temp_key_list3)
+    
+    for x4 in range(MAX_LEN - 4):
+        temp_key4 = temp_key4 + random.choice(COMBINED)
+        temp_key_list4 = array.array('u', temp_key4)
+        random.shuffle(temp_key_list3)
 
     key1 = ""
     key2 = ""
     key3 = ""
+    key4 = ""
 
     for x1 in temp_key_list1:
         key1 = key1 + x1
@@ -56,6 +67,9 @@ while True:
     for x3 in temp_key_list3:
         key3 = key3 + x3
 
-    full_key = key1 + "-" + key2 + "-" + key3
+    for x4 in temp_key_list4:
+        key4 = key4 + x4
+
+    full_key = key1 + "-" + key2 + "-" + key3 + "-" + key4
 
     print(full_key, file=open("output.txt", "a"))
